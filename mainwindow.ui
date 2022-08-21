@@ -60,7 +60,7 @@
      <item>
       <widget class="QLineEdit" name="input">
        <property name="text">
-        <string>/home/idriver/Desktop/格式转换技术资料/转换前文件/uflexray.urc</string>
+        <string>/home/idriver/Desktop/格式转换技术资料/转换前文件/ucan.urc</string>
        </property>
       </widget>
      </item>
