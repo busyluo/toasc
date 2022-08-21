@@ -1,0 +1,42 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+AccessModifierOffset: -4
+ColumnLimit: 100
+PointerAlignment: Left
+
+# break
+AllowShortFunctionsOnASingleLine: None
+AllowShortLambdasOnASingleLine: false
+AllowShortBlocksOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: true
+AlwaysBreakTemplateDeclarations: Yes
+
+# sort include
+IncludeBlocks: Preserve
+IncludeCategories:
+  # Qt ui header
+  - Regex:       '"ui_[^\./]+.h'
+    Priority:    0
+  # Qt header: <QWidget>
+  - Regex:       '<Q[A-Z][^\./]*>'
+    Priority:    3
+  # C++ standard libraries
+  - Regex:       '<[a-z]+>'
+    Priority:    1
+  # system header
+  - Regex:       '<(net|linux|sys|arpa|netinet)?/[^\./]*\.h>'
+    Priority:    2
+  # other: <asm/boot.h>
+  - Regex:       '<[^.]+/.*>'
+    Priority:    4
+  # <proj.h>
+  - Regex:       '<.*>'
+    Priority:    5
+  # "utils/config.h"
+  - Regex:       '"[^.]+/.*"'
+    Priority:    6
+  # The rest
+  - Regex:       '.*'
+    Priority:    9
+
