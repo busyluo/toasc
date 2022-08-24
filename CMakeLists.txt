@@ -35,13 +35,9 @@ include_directories(${CMAKE_BINARY_DIR}/Vector_ASC/src)
 target_link_libraries(toasc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Vector_ASC)
 
 set_target_properties(toasc PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+    MACOSX_BUNDLE_GUI_IDENTIFIER www.ulantec.cn
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
 )
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(toasc)
-endif()
 
 add_subdirectory(Vector_ASC)
