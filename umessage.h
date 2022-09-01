@@ -28,6 +28,7 @@ typedef struct {
      * Bit20: Remote Transmission Request, 1=Remote frame;
      */
     uint32_t cs;             /* Code and Status*/
+    uint32_t messageId;      /* Message ID */
     uint8_t payloadLength;   /* Length of data in bytes */
     CANPayload_t payload[0]; /* Data bytes of the CAN message*/
 } UBusMessageCANDataHead_t;

@@ -106,7 +106,7 @@ void Converter::Convert(QString input) {
             asc_file.write(&msg);
         } else if (message_head.type == UBT_CAN) {
             memcpy(&message_head.data, urc_data.data() + data_ptr, k_can_head_size);
-            data_ptr += 5;
+            data_ptr += k_can_head_size - 3;
 
             payload_len = message_head.data.canData.payloadLength * sizeof(CANPayload_t);
             std::vector<Dx> can_data(payload_len);
@@ -116,7 +116,7 @@ void Converter::Convert(QString input) {
 
             if (message_head.data.canData.cs >> 21 & 0x01) {
                 CanExtendedMessage msg;
-                msg.id = message_head.serialNumber;
+                msg.id = message_head.data.canData.messageId;
                 msg.channel = message_head.nodeId;
                 msg.dir = Dir::Rx;
                 msg.dlc = payload_len;
@@ -125,14 +125,14 @@ void Converter::Convert(QString input) {
                 asc_file.write(&msg);
             } else if (message_head.data.canData.cs >> 20 & 0x01) {
                 CanRemoteFrame msg;
-                msg.id = message_head.serialNumber;
+                msg.id = message_head.data.canData.messageId;
                 msg.channel = message_head.nodeId;
                 msg.dir = Dir::Rx;
                 msg.time = message_head.stamp / 1000000.0;
                 asc_file.write(&msg);
             } else {
                 CanMessage msg;
-                msg.id = message_head.serialNumber;
+                msg.id = message_head.data.canData.messageId;
                 msg.channel = message_head.nodeId;
                 msg.dir = Dir::Rx;
                 msg.dlc = payload_len;
